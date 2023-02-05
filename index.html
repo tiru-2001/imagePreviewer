@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image preview</title>
+    <style>
+        .maincontainer {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            text-align: center;
+        }
+        
+        .maincontainer .container {
+            text-align: center;
+        }
+        
+        .maincontainer #labl {
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: dodgerblue;
+            font-size: 1.2rem;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        
+        .maincontainer #i {
+            display: none;
+        }
+        
+        .maincontainer #labl:hover {
+            background-color: rgb(5, 210, 5);
+        }
+        
+        .maincontainer #labl:active {
+            transform: scale(.9);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="maincontainer">
+        <div id="co" class="container"></div>
+        <label id="labl" for="i">select</label>
+        <input type="file" name="" multiple="multiple" id="i">
+    </div>
+    <script>
+        let int = document.getElementById("i")
+        let container = document.getElementById("co");
+
+
+
+        int.addEventListener("change", (e) => {
+            let ima = URL.createObjectURL(e.target.files[0])
+            console.log(ima);
+            let img = document.createElement("img");
+            img.src = ima;
+
+            img.setAttribute("style", "height:300px; width:300px; ")
+            if (!container.hasChildNodes())
+                container.appendChild(img);
+            else {
+                container.innerHTML = " "
+                container.appendChild(img)
+            }
+
+
+
+
+        })
+    </script>
+</body>
+
+</html>
